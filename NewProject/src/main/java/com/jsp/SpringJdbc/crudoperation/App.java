@@ -4,27 +4,30 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.jsp.SpringJdbc.Dao.StudentDao;
+import com.jsp.SpringJdbc.Dao.StudentImpl;
+import com.jsp.SpringJdbc.entity.Student;
+
 public class App {
 	public static void main(String[] args) {
 		System.out.println("START MAIN");
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"com/jsp/SpringJdbc/crudoperation/jdbcconfig.xml");
+		StudentDao a=context.getBean("Student1",StudentImpl.class);
 		
-		JdbcTemplate a= context.getBean("Jdbctemplate",JdbcTemplate.class);
+//		creating the object using - new
+//		Student s=new Student();
+//		s.setUSN("3");
+//		s.setName("Darshan3");
+//		s.setCity("Bangalore");
 		
-		//insert
-//		int b=a.update("insert into jdbcspring.student values(?,?,?)","1","Darshan","Kumta");
+		//IOC to manage
 		
-		//delete
-//		int b=a.update("Delete from jdbcspring.student where USN=? and name=?",1,"Darshan");
-		
-		//update
-//		String query="Update jdbcspring.student set Name=? where USN=?";
-//		int b=a.update(query,"Darshan2",1);
-		
-		//read
-		String query="select * from jdbcspring.student";
-		System.out.println(a.update(query));
+		Student st=context.getBean("StudentBean",Student.class);
+//		int b=a.insert(st);
+//		int b=a.delete(st);
+		int b=a.update(st);
+		System.out.println(b);
 		System.out.println("END MAIN");
 	}
 }

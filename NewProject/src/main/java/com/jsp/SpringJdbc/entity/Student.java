@@ -1,4 +1,4 @@
-package com.jsp.SpringJdbc.crudoperation;
+package com.jsp.SpringJdbc.entity;
 
 public class Student {
 	private String USN;
